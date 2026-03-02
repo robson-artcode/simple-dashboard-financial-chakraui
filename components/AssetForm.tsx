@@ -129,10 +129,12 @@ export function AssetForm({ assets, mounted, onAdd, onUpdate, onColorChange, onR
               onChange={(e) =>
                 editingId === asset.id ? setEditName(e.target.value) : undefined
               }
-              isReadOnly={editingId !== asset.id}
-              bg="gray.700"
-              borderColor="gray.600"
-              _focus={{ borderColor: "teal.400", boxShadow: "0 0 0 1px var(--chakra-colors-teal-400)" }}
+              isDisabled={editingId !== asset.id}
+              bg={editingId === asset.id ? "gray.800" : "gray.600"}
+              borderColor={editingId === asset.id ? "gray.500" : "gray.500"}
+              color={editingId === asset.id ? undefined : "gray.400"}
+              _focus={editingId === asset.id ? { borderColor: "teal.400", boxShadow: "0 0 0 1px var(--chakra-colors-teal-400)" } : undefined}
+              _disabled={{ opacity: 0.75, cursor: "not-allowed" }}
               flex="1"
               minW="120px"
             />
@@ -151,9 +153,11 @@ export function AssetForm({ assets, mounted, onAdd, onUpdate, onColorChange, onR
             ) : (
               <Input
                 value={formatBRL(asset.value)}
-                isReadOnly
-                bg="gray.700"
-                borderColor="green.600"
+                isDisabled
+                bg="gray.600"
+                borderColor="gray.500"
+                color="gray.400"
+                _disabled={{ opacity: 0.75, cursor: "not-allowed" }}
                 w="140px"
               />
             )}
