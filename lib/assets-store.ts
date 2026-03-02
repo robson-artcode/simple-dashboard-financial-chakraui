@@ -61,7 +61,7 @@ export function getAssetsStore(): AssetsStore {
         return store.get(key, opts ?? {});
       },
       async setJSON(key: string, value: unknown) {
-        return store.setJSON(key, value as object);
+        await store.setJSON(key, value as object);
       },
     };
   } catch (_err) {
